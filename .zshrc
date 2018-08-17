@@ -86,6 +86,7 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 git
+vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
