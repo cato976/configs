@@ -119,6 +119,7 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
+alias cls="clear"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 #function prompt_char {
