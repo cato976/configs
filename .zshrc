@@ -87,6 +87,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(
 git
 vi-mode
+zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
