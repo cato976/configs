@@ -124,6 +124,7 @@ alias cls="clear"
 alias ..="cd .."
 alias ...="cd ../../"
 alias ....="cd ../../../"
+alias gl="git log --oneline --graph"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 #function prompt_char {
