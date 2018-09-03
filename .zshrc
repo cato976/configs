@@ -125,6 +125,7 @@ alias ..="cd .."
 alias ...="cd ../../"
 alias ....="cd ../../../"
 alias gl="git log --oneline --graph"
+alias grpo="git remote prune origin"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 #function prompt_char {
