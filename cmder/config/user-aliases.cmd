@@ -13,9 +13,15 @@ unalias=alias /d $1
 vi=vim $*
 cmderr=cd /d "%CMDER_ROOT%"
 ll=ls -al --color 
+
+;= git
 gl="C:\Program Files\Git\cmd\git.exe" log --oneline --graph  
+grpo="C:\Program Files\Git\cmd\git.exe" remote prune origin
+
+;= navigation
 gowork=cd /d "C:\WS"
 gotomy=cd /d "c:\users\catoan"
 ..=cd ../
-...=cd ../../../
-....=cd ../../../../
+...=cd ../../
+....=cd ../../../
+
