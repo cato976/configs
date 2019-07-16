@@ -9,7 +9,7 @@ bindkey -v
 
 
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/dre/.zshrc'
+zstyle :compinstall filename '/home/acato/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -19,7 +19,7 @@ compinit
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/dre/.oh-my-zsh"
+export ZSH="/home/acato/.oh-my-zsh"
 export TERM="xterm-256color"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -88,6 +88,8 @@ plugins=(
 git
 vi-mode
 zsh-syntax-highlighting
+zsh-autosuggestions
+z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -126,7 +128,17 @@ alias ...="cd ../../"
 alias ....="cd ../../../"
 alias gl="git log --oneline --graph"
 alias grpo="git remote prune origin"
+
+alias update="source ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+
+# z extention for browsing
+. ~/z.sh
+
+case $(uname -a) in
+	*Microsoft*) unsetopt BG_NICE ;;
+esac
 
 #function prompt_char {
 #    git branch >/dev/null 2>/dev/null && echo '±' && return
