@@ -9,7 +9,7 @@ bindkey -v
 
 
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/acato/.zshrc'
+zstyle :compinstall filename '/home/dre/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -19,7 +19,7 @@ compinit
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/acato/.oh-my-zsh"
+export ZSH="/home/dre/.oh-my-zsh"
 export TERM="xterm-256color"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -196,6 +196,9 @@ gpr() {
 commands() {
       awk '{a[$2]++}END{for(i in a){print a[i] " " i}}'
   }
+
+# add browser
+export BROWSER='/mnt/c/Tools/Chrome/Application/chrome.exe'
 
 # Set git text editor
 export GIT_EDITOR="vim"
