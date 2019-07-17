@@ -199,4 +199,3 @@ commands() {
 
 # Set git text editor
 export GIT_EDITOR="vim"
-source ~/.oh-my-zsh/functions/pr
