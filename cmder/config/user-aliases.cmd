@@ -20,6 +20,7 @@ grpo="C:\Program Files\Git\cmd\git.exe" remote prune origin
 gbr=for /f "delims=" %a in ('git rev-parse --abbrev-ref HEAD') do @set myvar=%a 
 gpsup=for /f "delims=" %a in ('git rev-parse --abbrev-ref HEAD') do @set myvar=%a && "C:\Program Files\Git\cmd\git.exe" push --set-upstream origin %myvar%
 gcd="C:\Program Files\Git\cmd\git.exe" checkout develop
+gcm="C:\Program Files\Git\cmd\git.exe" checkout master
 gst="C:\Program Files\Git\cmd\git.exe" status
 
 ;= navigation
