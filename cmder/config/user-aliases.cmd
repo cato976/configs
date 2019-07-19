@@ -17,9 +17,10 @@ ll=ls -al --color
 ;= git
 gl="C:\Program Files\Git\cmd\git.exe" log --oneline --graph  
 grpo="C:\Program Files\Git\cmd\git.exe" remote prune origin
-gcd="C:\Program Files\Git\cmd\git.exe" checkout develop
 gbr=for /f "delims=" %a in ('git rev-parse --abbrev-ref HEAD') do @set myvar=%a 
 gpsup=for /f "delims=" %a in ('git rev-parse --abbrev-ref HEAD') do @set myvar=%a && "C:\Program Files\Git\cmd\git.exe" push --set-upstream origin %myvar%
+gcd="C:\Program Files\Git\cmd\git.exe" checkout develop
+gst="C:\Program Files\Git\cmd\git.exe" status
 
 ;= navigation
 gowork=cd /d "C:\WS"
