@@ -9,7 +9,7 @@ bindkey -v
 
 
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/acato/.zshrc'
+zstyle :compinstall filename '/home/dre/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -19,8 +19,8 @@ compinit
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/acato/.oh-my-zsh"
-export TERM="xterm-256color"
+export ZSH="/home/dre/.oh-my-zsh"
+#export TERM="xterm-256color"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
