@@ -20,7 +20,8 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/dre/.oh-my-zsh"
-#export TERM="xterm-256color"
+export TERM="xterm-256color"
+export LANG=en_US.UTF-8
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -28,9 +29,10 @@ export ZSH="/home/dre/.oh-my-zsh"
 #ZSH_THEME="robbyrussell"
 #POWERLEVEL9K_MODE='nerdfont-complete'
 #POWERLEVEL9K_MODE='awesome-fontconfig'
-ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir newline vcs)
+#ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="agnoster"
+#POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir newline vcs)
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -85,11 +87,12 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-git
-vi-mode
-zsh-syntax-highlighting
-zsh-autosuggestions
-z
+    emoji
+    git
+    vi-mode
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    z
 )
 
 source $ZSH/oh-my-zsh.sh
