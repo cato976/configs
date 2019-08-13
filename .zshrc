@@ -96,6 +96,12 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# source python powerline
+if [[ -r /home/acato/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+    source /home/acato/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+fi
+
 #source ~/.fonts/devicons-regular.sh
 
 # User configuration
