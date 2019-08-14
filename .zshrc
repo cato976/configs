@@ -9,7 +9,7 @@ bindkey -v
 
 
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/acato/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -19,7 +19,7 @@ compinit
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/acato/.oh-my-zsh"
+export ZSH="/home/dre/.oh-my-zsh"
 #export TERM="xterm-256color"
 #export LANG=en_US.UTF-8
 
@@ -98,8 +98,8 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # source python powerline
-if [[ -r /home/acato/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
-    source /home/acato/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+if [[ -r ~/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+    source ~/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 fi
 
 #source ~/.fonts/devicons-regular.sh
