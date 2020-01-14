@@ -121,3 +121,4 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+source ~/qmk_utils/activate_wsl.sh
