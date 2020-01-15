@@ -9,7 +9,9 @@ bindkey -v
 
 
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/catoan/.zshrc'
+
+zstyle :compinstall filename '/home/dre/.zshrc'
+
 
 autoload -Uz compinit
 compinit
@@ -19,7 +21,8 @@ compinit
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/catoan/.oh-my-zsh"
+export ZSH="/home/dre/.oh-my-zsh"
+
 #export TERM="xterm-256color"
 #export LANG=en_US.UTF-8
 
@@ -90,16 +93,22 @@ plugins=(
     emoji
     git
     vi-mode
-    zsh-syntax-highlighting
-    zsh-autosuggestions
+    #zsh-syntax-highlighting
+    #zsh-autosuggestions
     z
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # source python powerline
-if [[ -r /home/catoan/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
-    source /home/catoan/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+
+if [[ -r /home/dre/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+    source /home/dre/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+fi
+
+if [[ -r /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+    source /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
 fi
 
 #source ~/.fonts/devicons-regular.sh
@@ -198,7 +207,7 @@ commands() {
   }
 
 # add browser
-export BROWSER='/mnt/c/Tools/Chrome/Application/chrome.exe'
+export BROWSER='/usr/bin/google-chrome-stable'
 
 # Set git text editor
 export GIT_EDITOR="vim"
@@ -216,7 +225,8 @@ bindkey -v
 
 
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/catoan/.zshrc'
+zstyle :compinstall filename '/home/dre/.zshrc'
+
 
 autoload -Uz compinit
 compinit
@@ -226,7 +236,8 @@ compinit
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/catoan/.oh-my-zsh"
+export ZSH="/home/dre/.oh-my-zsh"
+
 #export TERM="xterm-256color"
 #export LANG=en_US.UTF-8
 
@@ -297,16 +308,16 @@ plugins=(
     emoji
     git
     vi-mode
-    zsh-syntax-highlighting
-    zsh-autosuggestions
+    #zsh-syntax-highlighting
+    #zsh-autosuggestions
     z
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # source python powerline
-if [[ -r /home/catoan/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
-    source /home/catoan/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+if [[ -r /home/dre/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+    source /home/dre/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 fi
 
 #source ~/.fonts/devicons-regular.sh
@@ -416,8 +427,10 @@ commands() {
   }
 
 # add browser
-export BROWSER='/mnt/c/Tools/Chrome/Application/chrome.exe'
-export CHROME_BIN='/mnt/c/Tools/Chrome/Application/chrome.exe'
+#export BROWSER='/mnt/c/Tools/Chrome/Application/chrome.exe'
+export BROWSER='/usr/bin/google-chrome-stable'
+#export CHROME_BIN='/mnt/c/Tools/Chrome/Application/chrome.exe'
+export CHROME_BIN='/usr/bin/google-chrome-stable'
 
 # Set git text editor
 export GIT_EDITOR="vim"
@@ -426,3 +439,8 @@ export GIT_EDITOR="vim"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+synapse &>/dev/null &
