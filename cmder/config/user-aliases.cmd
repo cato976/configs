@@ -23,6 +23,8 @@ gcd="C:\Program Files\Git\cmd\git.exe" checkout develop
 gcm="C:\Program Files\Git\cmd\git.exe" checkout master
 gst="C:\Program Files\Git\cmd\git.exe" status
 gpp="C:\Program Files\Git\cmd\git.exe" pull --prune
+gdm="C:\Program Files\Git\cmd\git.exe" branch --merged | grep -v "\*" | xargs -n 1 git branch -d
+gpr=bash -c "c:/Tools/cmder/gpr.sh"
 
 ;= navigation
 gowork=cd /d "C:\WS"

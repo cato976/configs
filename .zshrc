@@ -9,7 +9,9 @@ bindkey -v
 
 
 # The following lines were added by compinstall
+
 zstyle :compinstall filename '/home/dre/.zshrc'
+
 
 autoload -Uz compinit
 compinit
@@ -20,6 +22,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/dre/.oh-my-zsh"
+
 #export TERM="xterm-256color"
 #export LANG=en_US.UTF-8
 
@@ -98,12 +101,14 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # source python powerline
+
 if [[ -r /home/dre/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
     source /home/dre/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 fi
 
 if [[ -r /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
     source /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
 fi
 
 #source ~/.fonts/devicons-regular.sh
@@ -133,17 +138,7 @@ fi
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-alias zshconfig="vim ~/.zshrc"
-alias cls="clear"
-alias ..="cd .."
-alias ...="cd ../../"
-alias ....="cd ../../../"
-alias gl="git log --oneline --graph"
-alias grpo="git remote prune origin"
 
-alias update="source ~/.zshrc"
-alias gpp="git pull --prune"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
@@ -232,6 +227,7 @@ bindkey -v
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/dre/.zshrc'
 
+
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
@@ -241,6 +237,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/dre/.oh-my-zsh"
+
 #export TERM="xterm-256color"
 #export LANG=en_US.UTF-8
 
@@ -361,6 +358,7 @@ alias grpo="git remote prune origin"
 
 alias update="source ~/.zshrc"
 alias gpp="git pull --prune"
+alias gdm="git branch --merged | grep -v '\*' | xargs -n 1 git branch -d"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
