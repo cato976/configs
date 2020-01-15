@@ -42,6 +42,7 @@ Plugin 'LucHermitte/VimFold4C'
 Plugin 'craigemery/vim-autotag'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ianks/vim-tsx'
+Plugin 'mattn/emmet-vim'
 call vundle#end()
 " }}}
 
@@ -72,6 +73,7 @@ filetype plugin indent on
 set background=dark
 colorscheme one
 
+highlight Pmenu ctermbg=gray guibg=gray
 
 
 " }}}
