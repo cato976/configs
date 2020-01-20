@@ -84,7 +84,17 @@ if has("nvim")
     au FileType cs let g:neomake_cs_enabled_makers = ['msbuild']
     " python
     "let g:python3_host_prog = "C:/Users/catoan/AppData/Local/Programs/Python/Python37/python3.7.exe"
-    let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-emmet', 'coc-tslint', 'coc-prettier', 'coc-html']
+    let g:coc_global_extensions = [
+        \ 'coc-json',
+        \ 'coc-tsserver',
+        \ 'coc-emmet',
+        \ 'coc-tslint',
+        \ 'coc-prettier',
+        \ 'coc-html',
+        \ 'coc-pairs',
+        \ 'coc-snippets'
+        \ ]
+    set guifont=Cascadia\ Code
 endif
 " }}}
 
@@ -105,7 +115,8 @@ set encoding=utf-8
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
 if has("gui_running")
-    set guifont=Inconsolata_for_Powerline:h12i:cANSI
+    "set guifont=Inconsolata_for_Powerline:h12i:cANSI
+    set guifont=Cascadia\ Code:h12i:cANSI
 endif
 " }}}
 
@@ -149,7 +160,7 @@ let g:OmniSharp_server_type = 'roslyn'
 let g:OmniSharp_host = "http://localhost:2000"
 let g:syntastic_cs_checkers = ['code_checker']
 
-let g:OmniSharp_server_path = 'C:\Users\catoan\.omnisharp/OmniSharp.exe'
+"let g:OmniSharp_server_path = 'C:\Users\catoan\.omnisharp\omnisharp-roslyn/OmniSharp.exe'
 "let g:OmniSharp_server_path = 'C:\WS\Personal_Git\omnisharp-roslyn\bin\Debug\OmniSharp.Http.Driver\net461\OmniSharp.exe'
 let g:OmniSharp_port = 2000
 
@@ -303,6 +314,20 @@ let g:autotagTagsFile="tags"
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" }}}
+
+" coc-snippets ----------------------------------------------------------------------{{{
+" Trigger configuration.
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 " }}}
 
 " vim-addon-manager ---------------------------------------------------------------------{{{
