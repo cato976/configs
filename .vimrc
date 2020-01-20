@@ -41,8 +41,13 @@ Plugin 'LucHermitte/lh-vim-lib'
 Plugin 'LucHermitte/VimFold4C'
 Plugin 'craigemery/vim-autotag'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'ryanoasis/vim-devicons'
 Plugin 'ianks/vim-tsx'
 Plugin 'mattn/emmet-vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'airblade/vim-gitgutter'
 call vundle#end()
 " }}}
 
@@ -90,6 +95,7 @@ if has("nvim")
         \ 'coc-json',
         \ 'coc-tsserver',
         \ 'coc-emmet',
+        \ 'coc-eslint',
         \ 'coc-tslint',
         \ 'coc-prettier',
         \ 'coc-html',
@@ -318,7 +324,7 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " }}}
 
-" coc-snippets ----------------------------------------------------------------------{{{
+" coc-snippets --------------------------------------------------------------------------{{{
 " Trigger configuration.
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
@@ -330,6 +336,45 @@ let g:coc_snippet_next = '<c-j>'
 let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
+" }}}
+
+" coc-rename ----------------------------------------------------------------------------{{{
+" Remap for rename current word
+nmap <F2> <Plug>(coc-rename)
+" }}}
+
+" coc-prettier --------------------------------------------------------------------------{{{
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+" }}}
+
+" NERDTree ------------------------------------------------------------------------------{{{
+nmap <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeGitStatusWithFlags = 1
+
+" sync open file with NERDTree
+" " Check if NERDTree is open or active
+function! IsNERDTreeOpen()        
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind if NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+" Highlight currently open buffer in NERDTree
+autocmd BufEnter * call SyncTree()
+" }}}
+
+" vim-gutter ----------------------------------------------------------------------------{{{
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
 " }}}
 
 " vim-addon-manager ---------------------------------------------------------------------{{{
