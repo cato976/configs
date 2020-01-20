@@ -41,8 +41,13 @@ Plugin 'LucHermitte/lh-vim-lib'
 Plugin 'LucHermitte/VimFold4C'
 Plugin 'craigemery/vim-autotag'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'ryanoasis/vim-devicons'
 Plugin 'ianks/vim-tsx'
 Plugin 'mattn/emmet-vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'airblade/vim-gitgutter'
 call vundle#end()
 " }}}
 
@@ -346,6 +351,30 @@ nmap <leader>f  <Plug>(coc-format-selected)
 
 " NERDTree ------------------------------------------------------------------------------{{{
 nmap <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeGitStatusWithFlags = 1
+
+" sync open file with NERDTree
+" " Check if NERDTree is open or active
+function! IsNERDTreeOpen()        
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind if NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+" Highlight currently open buffer in NERDTree
+autocmd BufEnter * call SyncTree()
+" }}}
+
+" vim-gutter ----------------------------------------------------------------------------{{{
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
 " }}}
 
 " vim-addon-manager ---------------------------------------------------------------------{{{
