@@ -90,6 +90,7 @@ if has("nvim")
         \ 'coc-json',
         \ 'coc-tsserver',
         \ 'coc-emmet',
+        \ 'coc-eslint',
         \ 'coc-tslint',
         \ 'coc-prettier',
         \ 'coc-html',
@@ -318,7 +319,7 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " }}}
 
-" coc-snippets ----------------------------------------------------------------------{{{
+" coc-snippets --------------------------------------------------------------------------{{{
 " Trigger configuration.
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
@@ -330,6 +331,21 @@ let g:coc_snippet_next = '<c-j>'
 let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
+" }}}
+
+" coc-rename ----------------------------------------------------------------------------{{{
+" Remap for rename current word
+nmap <F2> <Plug>(coc-rename)
+" }}}
+
+" coc-prettier --------------------------------------------------------------------------{{{
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+" }}}
+
+" NERDTree ------------------------------------------------------------------------------{{{
+nmap <C-n> :NERDTreeToggle<CR>
 " }}}
 
 " vim-addon-manager ---------------------------------------------------------------------{{{
