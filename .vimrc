@@ -25,7 +25,7 @@ Plugin 'cato976/omnisharp-vim'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'cato976/vim-spotifysearch'
 if has('nvim')
-"    Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plugin 'neoclide/coc.nvim', { 'do': 'yarn intstall --frozen-lockfile'}
 else
     Plugin 'Shougo/deoplete.nvim'
