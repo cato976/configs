@@ -25,7 +25,7 @@ Plugin 'cato976/omnisharp-vim'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'cato976/vim-spotifysearch'
 if has('nvim')
-    Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"    Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plugin 'neoclide/coc.nvim', { 'do': 'yarn intstall --frozen-lockfile'}
 else
     Plugin 'Shougo/deoplete.nvim'
@@ -102,7 +102,7 @@ if has("nvim")
         \ 'coc-pairs',
         \ 'coc-snippets'
         \ ]
-    set guifont=Cascadia\ Code
+    set guifont=CascadiaCode\ Nerd\ Font
 endif
 " }}}
 
@@ -114,6 +114,10 @@ if has("vim")
 endif
 " }}}
 
+" asyncomplete -----------------------------------------------------------------{{{
+let g:asyncomplete_auto_popup = 0
+" }}}
+"
 " Airline ----------------------------------------------------------------------{{{
 " Set up Airline
 set laststatus=2
@@ -124,7 +128,7 @@ let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
 if has("gui_running")
     "set guifont=Inconsolata_for_Powerline:h12i:cANSI
-    set guifont=Cascadia\ Code:h12i:cANSI
+    "set guifont=Cascadia\ Code:h12i:cANSI
 endif
 " }}}
 
@@ -344,9 +348,26 @@ nmap <F2> <Plug>(coc-rename)
 " }}}
 
 " coc-prettier --------------------------------------------------------------------------{{{
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" command! -nargs=0 Prettier :CocCommand prettier.formatFile
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+" }}}
+
+" coc#refresh() --------------------------------------------------------------------------{{{
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+" }}}
+
+" Use K to show documentation in preview window --------------------------{{{
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+endfunction
 " }}}
 
 " NERDTree ------------------------------------------------------------------------------{{{
@@ -356,16 +377,16 @@ let g:NERDTreeGitStatusWithFlags = 1
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
 function! IsNERDTreeOpen()        
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+    return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
 " Call NERDTreeFind if NERDTree is active, current window contains a modifiable
 " file, and we're not in vimdiff
 function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
+    if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+        NERDTreeFind
+        wincmd p
+    endif
 endfunction
 
 " Highlight currently open buffer in NERDTree
