@@ -309,6 +309,11 @@ if [[ -r /home/catoan/.local/lib/python3.6/site-packages/powerline/bindings/zsh/
     source /home/catoan/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 fi
 
+# source bash insulter
+if [ -f /etc/bash.command-not-found ]; then
+    . /etc/bash.command-not-found
+fi
+
 #source ~/.fonts/devicons-regular.sh
 
 # User configuration
