@@ -76,7 +76,7 @@ syntax on
 let g:deoplete#enable_at_startup = 1
 filetype plugin indent on
 set background=dark
-colorscheme one
+colorscheme badwolf
 
 highlight Pmenu ctermbg=gray guibg=gray
 
