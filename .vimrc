@@ -148,8 +148,8 @@ augroup END
 
 " Leader ----------------------------------------------------------------------{{{
 let mapleader = ","
-nnoremap <leader>p mm%x`mx
 nnoremap <leader>c :Neomake!<CR>
+nnoremap <leader>ev :<C-U>tab drop $MYVIMRC<CR>
 " }}}
 
 " My Bindings ----------------------------------------------------------------------{{{
