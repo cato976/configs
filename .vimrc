@@ -83,6 +83,117 @@ highlight Pmenu ctermbg=gray guibg=gray
 
 " }}}
 
+" Leader ----------------------------------------------------------------------{{{
+let mapleader = ","
+nnoremap <leader>c :Neomake!<CR>
+nnoremap <leader>ev :<C-U>tab drop $MYVIMRC<CR>
+" }}}
+
+" Diff ----------------------------------------------------------------------{{{ Set diff compare
+set diffopt=vertical,filler,context:4,foldcolumn:1,indent-heuristic,algorithm:patience,internal	 " diff options
+" Detect if vim is started as a diff tool (vim -d, vimdiff)
+" NOTE: Does not work when you start Vim as usual and enter diff mode using
+" diffthis
+
+augroup aug_color_scheme
+    au!
+
+    autocmd ColorScheme badwolf call s:PatchColorScheme()
+augroup END
+
+function s:PatchColorScheme()
+    hi! link DiffChange NONE
+    hi! clear DiffChange
+    hi! DiffText term=NONE ctermfg=215 ctermbg=233 cterm=NONE guifg=#FFB86C guibg=#14141a gui=NONE
+
+endfunction
+
+augroup aug_diffs
+    au!
+
+    " Inspect whether some windows are diff mode, and apply changes for
+    " such windows 
+    " Run asynchronously, to ensure '&diff' option is properly set in VIM
+    au WinEnter,BufEnter * call timer_start(50, 'CheckDiffMode')
+
+    " Highlight VCS conflict markers
+    "au VimEnter,WinEnter * if !exists('w:_vsc_conflict_marker_match') |
+                "\ let:_vsc_conflict_marker_match = match('ErrorMsg', '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$') |
+                "\ endif
+augroup END
+
+" In diff mode:
+" - Disable syntax highlighting
+" - Disable spell checking
+function CheckDiffMode(timer)
+    let curwin = winnr()
+
+    " Check each window
+    for _win in range(1, winnr('$'))
+        exe "noautocmd " . _win . "wincmd w"
+
+        call s:change_option_in_diffmode('b:', 'syntax', 'off')
+        call s:change_option_in_diffmode('w:', 'spell', 0, 1)
+    endfor
+
+    if &diff
+        execute "NERDTreeClose"
+    endif
+
+    " Get back to original window
+    exe "noautocmd " . curwin . "wincmd w"
+endfunction
+
+" Detect window or buffer local option is in sync with diff mode
+function s:change_option_in_diffmode(scope, option, value, ...)
+    let isBoolean = get(a:, "1", 0)
+    let backupVarname = a:scope . "_old_" . a:option
+
+    " Entering diff mode
+    if &diff && !exists(backupVarname)
+        exe "let " . backupVarname . "=&" . a:option
+        call s:set_option(a:option, a:value, 1, isBoolean)
+    endif
+
+    " Exiting diff mode
+    if !&diff && exists(backupVarname)
+        let oldValue = eval(backupVarname)
+        call s:set_option(a:option, oldValue, 1, isBoolean)
+        exe "unlet " . backupVarname
+    endif
+endfunction
+
+" Set option using set of setlocal , be it string or boolean value
+function s:set_option(option, value, ...)
+    let isLocal = get(a:, "1", 0)
+    let isBoolean = get(a:, "2", 0)
+    if isBoolean
+        exe (isLocal ? "setlocal " : "set ") . (a:value ? "" : "no") . a:option
+    else
+        exe (isLocal ? "setlocal " : "set ") . a:option . "=" . a:value
+    endif
+endfunction
+
+if &diff
+    let s:is_started_as_vim_diff = 1
+    syntax off
+    setlocal nospell
+endif
+
+" close all windows when in diff mode
+nnoremap <leader>q :call <SID>QuitWindow()<CR> 
+
+function s:QuitWindow()
+    execute "echom 'inside QuitWindow()'"
+    if get(s:, 'is_started_as_vim_diff', 0)
+        qall
+        return
+    endif
+
+    quit
+endfunction
+" }}}
+
 " Neovim Basics ----------------------------------------------------------------------{{{
 if has("nvim")
     set inccommand=split
@@ -144,12 +255,6 @@ augroup ProjectDrawer
     autocmd!
     autocmd VimEnter * :NERDTree
 augroup END
-" }}}
-
-" Leader ----------------------------------------------------------------------{{{
-let mapleader = ","
-nnoremap <leader>c :Neomake!<CR>
-nnoremap <leader>ev :<C-U>tab drop $MYVIMRC<CR>
 " }}}
 
 " My Bindings ----------------------------------------------------------------------{{{
@@ -394,8 +499,9 @@ autocmd BufEnter * call SyncTree()
 " }}}
 
 " vim-gutter ----------------------------------------------------------------------------{{{
-nmap ]h <Plug>(GitGutterNextHunk)
-nmap [h <Plug>(GitGutterPrevHunk)
+"nmap ]h <Plug>(GitGutterNextHunk)
+"nmap [h <Plug>(GitGutterPrevHunk)
+set updatetime=1000
 " }}}
 
 " vim-addon-manager ---------------------------------------------------------------------{{{
