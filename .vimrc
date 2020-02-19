@@ -184,7 +184,6 @@ endif
 nnoremap <leader>q :call <SID>QuitWindow()<CR> 
 
 function s:QuitWindow()
-    execute "echom 'inside QuitWindow()'"
     if get(s:, 'is_started_as_vim_diff', 0)
         qall
         return
