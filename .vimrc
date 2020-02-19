@@ -193,7 +193,7 @@ function s:QuitWindow()
 endfunction
 " }}}
 
-" Neovim Basics ----------------------------------------------------------------------{{{
+" Neovim Basics ---------------------------------------------------------------{{{ Neovim Basics
 if has("nvim")
     set inccommand=split
     let g:neomake_open_list=2
