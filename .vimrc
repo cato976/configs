@@ -1,4 +1,4 @@
-" Plugins ----------------------------------------------------------------------{{{ Set up for vundle
+" Plugins -------------------------------------------------------------------{{{ Set up for vundle
 filetype off
 set rtp+=$HOME/.vim/bundle/Vundle.vim/
 call vundle#begin('$HOME/.vim/bundle/')
@@ -43,10 +43,10 @@ Plugin 'craigemery/vim-autotag'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'ianks/vim-tsx'
 Plugin 'mattn/emmet-vim'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'airblade/vim-gitgutter'
 call vundle#end()
 " }}}
@@ -125,7 +125,7 @@ augroup END
 " In diff mode:
 " - Disable syntax highlighting
 " - Disable spell checking
-function CheckDiffMode(timer)
+function! CheckDiffMode(timer)
     let curwin = winnr()
 
     " Check each window
@@ -184,7 +184,6 @@ endif
 nnoremap <leader>q :call <SID>QuitWindow()<CR> 
 
 function s:QuitWindow()
-    execute "echom 'inside QuitWindow()'"
     if get(s:, 'is_started_as_vim_diff', 0)
         qall
         return
