@@ -507,3 +507,7 @@ set updatetime=1000
 set nocompatible | filetype indent plugin on | syn on
 set runtimepath+=~/.vim/bundle/vim-addon-manager
 " }}}
+
+" NERDCommenter ---------------------------------------------------------------------{{{
+imap <C-c> <plug>NERDCommenterInsert
+" }}}
