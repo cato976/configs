@@ -84,7 +84,7 @@ highlight Pmenu ctermbg=gray guibg=gray
 " }}}
 
 " Leader ----------------------------------------------------------------------{{{
-let mapleader = ","
+let mapleader = " "
 nnoremap <leader>c :Neomake!<CR>
 nnoremap <leader>ev :<C-U>tab drop $MYVIMRC<CR>
 " }}}
