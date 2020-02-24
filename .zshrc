@@ -209,6 +209,7 @@ commands() {
 
 # add browser
 export BROWSER='/mnt/c/Tools/Chrome/Application/chrome.exe'
+export CHROME_BIN='/mnt/c/Tools/Chrome/Application/chrome.exe'
 
 # Set git text editor
 export GIT_EDITOR="vim"
