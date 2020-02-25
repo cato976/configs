@@ -48,6 +48,7 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'ianks/vim-tsx'
 Plugin 'mattn/emmet-vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'junegunn/fzf.vim'
 call vundle#end()
 " }}}
 
