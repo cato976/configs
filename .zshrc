@@ -449,3 +449,5 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 synapse &>/dev/null &
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
