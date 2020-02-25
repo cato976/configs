@@ -1,4 +1,4 @@
-" Plugins -------------------------------------------------------------------{{{ Set up for vundle
+" Plugin -------------------------------------------------------------------{{{ Set up for vundle
 filetype off
 set rtp+=$HOME/.vim/bundle/Vundle.vim/
 call vundle#begin('$HOME/.vim/bundle/')
@@ -49,6 +49,7 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'ianks/vim-tsx'
 Plugin 'mattn/emmet-vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install()}}
 Plugin 'junegunn/fzf.vim'
 call vundle#end()
 " }}}
@@ -512,4 +513,8 @@ set runtimepath+=~/.vim/bundle/vim-addon-manager
 
 " NERDCommenter ---------------------------------------------------------------------{{{
 imap <C-c> <plug>NERDCommenterInsert
+" }}}
+
+" fzf -------------------------------------------------------------------------------{{{
+nnoremap <C-f> :Files<CR>
 " }}}
