@@ -51,6 +51,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install()}}
 Plugin 'junegunn/fzf.vim'
+Plugin 'haya14busa/is.vim' " unhighlight search results
 call vundle#end()
 " }}}
 
@@ -517,4 +518,18 @@ imap <C-c> <plug>NERDCommenterInsert
 
 " fzf -------------------------------------------------------------------------------{{{
 nnoremap <C-f> :Files<CR>
+" }}}
+
+" replace ---------------------------------------------------------------------------{{{
+" Press * to search for the term under the cursor or a visual selection and
+" then press a key below to replace all instances of it in the current file.
+nnoremap <leader>r :%s///g<left><left>
+nnoremap <leader>rc :%s///gc<left><left><left>
+
+" The same as above bun instead of acting on the whole file it will be
+" restricted to the previously visually selected range. You can do that by
+" pressing *, visually selecting the range you want it to apply to and then
+" press a key below to replace all instances of it in the current selection.
+xnoremap <leader>r :s///g<left><left>
+xnoremap <leader>rc :s///gc<left><left><left>
 " }}}
