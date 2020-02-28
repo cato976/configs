@@ -518,8 +518,31 @@ imap <C-c> <plug>NERDCommenterInsert
 
 " fzf -------------------------------------------------------------------------------{{{
 nnoremap <C-f> :Files<CR>
+
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
+function! FloatingFZF()
+  let buf = nvim_create_buf(v:false, v:true)
+  call setbufvar(buf, '&signcolumn', 'no')
+ 
+  let height = float2nr(10)
+  let width = float2nr(180)
+  let horizontal = float2nr((&columns - width) / 2)
+  let vertical = 1
+ 
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': vertical,
+        \ 'col': horizontal,
+        \ 'width': width,
+        \ 'height': height,
+        \ 'style': 'minimal'
+        \ }
+ 
+  call nvim_open_win(buf, v:true, opts)
+endfunction
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'bat {}']}, <bang>0)
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'bat --color=always {}']}, <bang>0)
 " }}}
 
 " replace ---------------------------------------------------------------------------{{{
