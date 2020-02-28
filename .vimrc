@@ -80,7 +80,7 @@ syntax on
 let g:deoplete#enable_at_startup = 1
 filetype plugin indent on
 set background=dark
-colorscheme badwolf
+colorscheme one
 
 highlight Pmenu ctermbg=gray guibg=gray
 
@@ -518,6 +518,8 @@ imap <C-c> <plug>NERDCommenterInsert
 
 " fzf -------------------------------------------------------------------------------{{{
 nnoremap <C-f> :Files<CR>
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'bat {}']}, <bang>0)
 " }}}
 
 " replace ---------------------------------------------------------------------------{{{
