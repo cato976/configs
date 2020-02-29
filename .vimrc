@@ -121,9 +121,9 @@ augroup aug_diffs
     au WinEnter,BufEnter * call timer_start(50, 'CheckDiffMode')
 
     " Highlight VCS conflict markers
-    "au VimEnter,WinEnter * if !exists('w:_vsc_conflict_marker_match') |
-                "\ let:_vsc_conflict_marker_match = match('ErrorMsg', '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$') |
-                "\ endif
+    au VimEnter,WinEnter * if !exists('w:_vsc_conflict_marker_match') |
+                \ let w:_vsc_conflict_marker_match = matchadd('ErrorMsg', '^\(<\|=\||\|>\)\{7\}\([^=].\+\)\?$') |
+                \ endif
 augroup END
 
 " In diff mode:
