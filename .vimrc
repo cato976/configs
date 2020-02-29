@@ -256,7 +256,7 @@ let g:netrw_winsize=25
 let g:netrw_list_hide=netrw_gitignore#Hide()
 augroup ProjectDrawer
     autocmd!
-    autocmd VimEnter * :NERDTree
+    autocmd VimEnter * if &filetype !=# 'gitcommit' | :NERDTree | endif " Only open NERDTree when not doing a commit
 augroup END
 " }}}
 
