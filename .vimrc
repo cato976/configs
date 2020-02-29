@@ -72,7 +72,7 @@ set expandtab
 set smarttab
 set number
 set relativenumber
-set scrolloff=999
+set scrolloff=999 " keep cursor in middle of screen
 set spell
 set spelllang=en_us
 syntax on
