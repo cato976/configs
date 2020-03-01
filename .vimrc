@@ -23,7 +23,9 @@ Plugin 'w0rp/ale'
 Plugin 'cato976/vim-test'
 Plugin 'cato976/omnisharp-vim'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'cato976/vim-spotifysearch'
+if has('win32')
+    Plugin 'cato976/vim-spotifysearch'
+endif
 Plugin 'msgpack/msgpack'
 if has('nvim')
     Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
