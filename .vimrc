@@ -19,6 +19,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'MarcWeber/vim-addon-manager'
 Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'prabirshrestha/async.vim'
 Plugin 'w0rp/ale'
 Plugin 'cato976/vim-test'
 Plugin 'cato976/omnisharp-vim'
@@ -229,7 +230,9 @@ endif
 " }}}
 
 " asyncomplete -----------------------------------------------------------------{{{
-let g:asyncomplete_auto_popup = 0
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_auto_completeopt = 0
+let g:asyncomplete_force_refresh_on_context_changed = 1
 " }}}
 
 " Airline ----------------------------------------------------------------------{{{
@@ -266,7 +269,8 @@ nnoremap <leader>ve :Vexplore<cr>
 
 " OmniSharp----------------------------------------------------------------------{{{ 
 " OmniSharp bindings
-nnoremap <leader>rt :OmniSharpRunTests<cr>
+"nnoremap <leader>rt :OmniSharpRunTests<cr>
+nnoremap <leader>rt :OmniSharpRunTest<cr>
 nnoremap <leader>rf :OmniSharpRunTestFixture<cr>
 nnoremap <leader>ra :OmniSharpRunAllTest<cr>
 nnoremap <leader>rl :OmniSharpRunLastTest<cr>
@@ -299,8 +303,13 @@ set completeopt=longest,menuone,preview
 " There is a performance penalty with this (especially on Mono).
 " By default, only Type/Method signatures are fetched. Full documentation can
 " still be fetched when you need it with the :OmniSharpDocumentation command.
-"let g:omnicomplete_fetch_full_documentation = 1
+let g:omnicomplete_fetch_full_documentation = 1
 
+
+" Enable automatic semantic highlighting.
+let g:OmniSharp_highlight_types = 2
+
+"let g:OmniSharp_server_stdio = 1
 " Set desired preview window height for viewing documentation.
 " You might also want to look at the echodoc plugin.
 set previewheight=5
@@ -371,6 +380,8 @@ nnoremap <Leader>th :OmniSharpHighlightTypes<CR>
 
 " Enable snippet completion
 let g:OmniSharp_want_snippet=1
+inoremap <expr> <Tab> pumvisible() ? '<C-n>' :
+            \ getline('.')[col('.')-2] =~# '[[:alnum:].-_#$]' ? '<C-x><C-o>' : '<Tab>'
 " }}}
 
 " Auto-Complete ----------------------------------------------------------------------{{{
