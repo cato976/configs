@@ -530,7 +530,9 @@ function! SyncTree()
 endfunction
 
 " Highlight currently open buffer in NERDTree
-autocmd BufEnter * call SyncTree()
+if(has('nvim') || has('vim'))
+    autocmd BufEnter * call SyncTree()
+endif
 " }}}
 
 " vim-gutter ----------------------------------------------------------------------------{{{
