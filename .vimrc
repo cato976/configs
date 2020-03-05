@@ -558,6 +558,7 @@ imap <C-c> <plug>NERDCommenterInsert
 
 " fzf -------------------------------------------------------------------------------{{{
 nnoremap <leader>o :Files<CR>
+nnoremap <C-f> :Rg 
 
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 
