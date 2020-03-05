@@ -94,6 +94,10 @@ highlight Pmenu ctermbg=gray guibg=gray
 let mapleader = " "
 nnoremap <leader>c :Neomake!<CR>
 nnoremap <leader>ev :<C-U>tab drop $MYVIMRC<CR>
+nnoremap <leader>l <C-w>l
+nnoremap <leader>h <C-w>h
+nnoremap <leader>k <C-w>k
+nnoremap <leader>j <C-w>j
 " }}}
 
 " Diff ----------------------------------------------------------------------{{{ Set diff compare
@@ -495,7 +499,9 @@ endfunction
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+if has('nvim')
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 " }}}
 "
 " Use K to show documentation in preview window --------------------------{{{
@@ -530,7 +536,7 @@ function! SyncTree()
 endfunction
 
 " Highlight currently open buffer in NERDTree
-if(has('nvim') || has('vim'))
+if has('nvim') || has('vim')
     autocmd BufEnter * call SyncTree()
 endif
 " }}}
