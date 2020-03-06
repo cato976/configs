@@ -65,6 +65,15 @@ autocmd FileType vim setlocal fdc=1
 autocmd FileType vim setlocal foldmethod=marker
 autocmd FileType vim setlocal foldlevel=0
 
+" save undo info
+if !isdirectory($HOME . '/.vim')
+    call mkdir($HOME . '/.vim', 'p', 0770)
+endif
+if !isdirectory($HOME . '/.vim/undo-dir')
+    call mkdir($HOME . '/.vim/undo-dir', 'p', 0700)
+endif
+set undodir=~/.vim/undo-dir
+set undofile
 set nocompatible
 set hlsearch
 set incsearch
