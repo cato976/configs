@@ -78,6 +78,7 @@ set relativenumber
 set scrolloff=999 " keep cursor in middle of screen
 set spell
 set spelllang=en_us
+set colorcolumn=80
 syntax on
 
 let g:deoplete#enable_at_startup = 1
