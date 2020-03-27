@@ -396,8 +396,10 @@ nnoremap <Leader>th :OmniSharpHighlightTypes<CR>
 
 " Enable snippet completion
 let g:OmniSharp_want_snippet=1
-inoremap <expr> <Tab> pumvisible() ? '<C-n>' :
-            \ getline('.')[col('.')-2] =~# '[[:alnum:].-_#$]' ? '<C-x><C-o>' : '<Tab>'
+if has('nvim')
+    inoremap <expr> <Tab> pumvisible() ? '<C-n>' :
+                \ getline('.')[col('.')-2] =~# '[[:alnum:].-_#$]' ? '<C-x><C-o>' : '<Tab>'
+endif
 " }}}
 
 " Auto-Complete ----------------------------------------------------------------------{{{
@@ -502,7 +504,9 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+if has('nvim')
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+endif
 
 function! s:check_back_space() abort
   let col = col('.') - 1
