@@ -22,6 +22,7 @@ Plugin 'prabirshrestha/asyncomplete.vim'
 Plugin 'prabirshrestha/async.vim'
 Plugin 'w0rp/ale'
 Plugin 'cato976/vim-test'
+Plugin 'skywind3000/asyncrun.vim'
 Plugin 'cato976/omnisharp-vim'
 Plugin 'tpope/vim-unimpaired'
 if has('win32')
@@ -29,7 +30,7 @@ if has('win32')
 endif
 Plugin 'msgpack/msgpack'
 if has('nvim')
-    Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    "Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plugin 'neoclide/coc.nvim', { 'do': 'yarn intstall --frozen-lockfile'}
 else
     Plugin 'Shougo/deoplete.nvim'
@@ -286,11 +287,12 @@ nnoremap <leader>ve :Vexplore<cr>
 " OmniSharp----------------------------------------------------------------------{{{ 
 " OmniSharp bindings
 "nnoremap <leader>rt :OmniSharpRunTests<cr>
-nnoremap <leader>rt :OmniSharpRunTest<cr>
+nnoremap <leader>rt :TestNearest<cr>
 nnoremap <leader>rf :OmniSharpRunTestFixture<cr>
 nnoremap <leader>ra :OmniSharpRunAllTest<cr>
 nnoremap <leader>rl :OmniSharpRunLastTest<cr>
 nnoremap <leader>b :OmniSharpBuildAsync<cr>
+"nnoremap <leader>b :Neomake<cr>
 
 
 " OmniSharp won't work without this setting
@@ -300,7 +302,7 @@ let g:OmniSharp_server_type = 'roslyn'
 let g:OmniSharp_host = "http://localhost:2000"
 let g:syntastic_cs_checkers = ['code_checker']
 
-"let g:OmniSharp_server_path = 'C:\Users\catoan\.omnisharp\omnisharp-roslyn/OmniSharp.exe'
+let g:OmniSharp_server_path = 'D:\Users\Dre\.omnisharp/OmniSharp.exe'
 "let g:OmniSharp_server_path = 'C:\WS\Personal_Git\omnisharp-roslyn\bin\Debug\OmniSharp.Http.Driver\net461\OmniSharp.exe'
 let g:OmniSharp_port = 2000
 
@@ -449,7 +451,7 @@ let g:spotify_playpause_key = "<F10>"
 
 " Test ----------------------------------------------------------------------{{{
 if has('nvim')
-    let test#strategy="neovim"
+    let test#strategy="asyncrun_background"
 endif
 " }}}
 
