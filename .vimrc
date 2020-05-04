@@ -55,6 +55,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install()}}
 Plugin 'junegunn/fzf.vim'
+Plugin 'airblade/vim-rooter' " Allow fzf to search from the root of the git repo
 Plugin 'haya14busa/is.vim' " unhighlight search results
 call vundle#end()
 " }}}
@@ -302,7 +303,7 @@ let g:OmniSharp_server_type = 'roslyn'
 let g:OmniSharp_host = "http://localhost:2000"
 let g:syntastic_cs_checkers = ['code_checker']
 
-let g:OmniSharp_server_path = 'D:\Users\Dre\.omnisharp/OmniSharp.exe'
+"let g:OmniSharp_server_path = 'D:\Users\Dre\.omnisharp/OmniSharp.exe'
 "let g:OmniSharp_server_path = 'C:\WS\Personal_Git\omnisharp-roslyn\bin\Debug\OmniSharp.Http.Driver\net461\OmniSharp.exe'
 let g:OmniSharp_port = 2000
 
