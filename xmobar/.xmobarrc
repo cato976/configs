@@ -1,0 +1,24 @@
+Config {
+--font = "xft:Bitstream Vera Sans Mono:size=16:antialias=true:hinting=true"
+font = "xft:CaskaydiaCove Nerd Font:size=16:antialias=true"
+--font = "-*-Fixed-Bold-R-Normal-*-15-*-*-*-*-*-*-*:size=16"
+, bgColor = "black"
+, fgColor = "grey"
+, position = Top
+, lowerOnStart = True
+, commands = [
+             Run Weather "KRYY" ["-t", "<station>: <tempF>F","-L","64","-H","77","--normal","green","--high","red","--low","lightblue"] 36000
+             ,Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+             , Run Network "eth1" ["-L","0","-H","32","--normal","green","--high","red"] 10
+             , Run Network "wlp41s0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+             , Run Network "enp39s0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+             , Run Com "/bin/sh" ["-c", "~/bin/spotify.sh"] "music" 1000
+             , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
+             , Run Memory ["-t","Mem: <usedratio>%"] 10
+             , Run Swap [ ] 10
+             , Run Date "%a %b %_d %l:%M" "date" 10
+             ]
+, sepChar = "%"
+, alignSep = "}{"
+, template = "%cpu%  %memory%  %swap% %wlp41s0% - %enp39s0% }{ %music% | <fc=#49E20E>%date%</fc> | %KRYY%"
+}
