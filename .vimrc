@@ -11,6 +11,8 @@ Plugin 'Lokaltog/vim-powerline'
 Plugin 'powerline/powerline-fonts'
 Plugin 'sjl/badwolf'
 Plugin 'rakr/vim-one'
+Plugin 'morhetz/gruvbox'
+Plugin 'dracula/vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'vim-syntastic/syntastic'
@@ -95,10 +97,13 @@ syntax on
 
 let g:deoplete#enable_at_startup = 1
 filetype plugin indent on
-set background=dark
-colorscheme one
+"set background=dark
+colorscheme gruvbox
 
-highlight Pmenu ctermbg=gray guibg=gray
+
+"color white
+highlight Pmenu ctermbg=gray guibg=gray 
+
 
 
 " }}}

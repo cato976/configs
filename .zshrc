@@ -210,7 +210,7 @@ commands() {
 export BROWSER='/usr/bin/google-chrome-stable'
 
 # Set git text editor
-export GIT_EDITOR="vim"
+export GIT_EDITOR="nvim"
 
 
 export NVM_DIR="$HOME/.nvm"
@@ -436,10 +436,6 @@ commands() {
 export BROWSER='/usr/bin/google-chrome-stable'
 #export CHROME_BIN='/mnt/c/Tools/Chrome/Application/chrome.exe'
 export CHROME_BIN='/usr/bin/google-chrome-stable'
-
-# Set git text editor
-export GIT_EDITOR="vim"
-
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
