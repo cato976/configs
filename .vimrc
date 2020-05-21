@@ -633,3 +633,8 @@ xnoremap <silent> s* "sy:let @/=@s<cr>cgn
 " which-key --------------------------------------------------------------------------{{{
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 " }}}
+
+" git --------------------------------------------------------------------------------{{{
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gs :Gstatus<CR>
+" }}}
