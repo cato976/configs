@@ -14,18 +14,14 @@ font = "xft:CaskaydiaCove Nerd Font:size=16:antialias=true"
              , Run Network "enp39s0" ["-L","0","-H","32","--normal","green","--high","red"] 10
              , Run Com "/bin/sh" ["-c", "~/bin/spotify.sh"] "music" 1000
              , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
-             , Run MultiCpu [ "--template" , "Cpu: <total0>%|<total1>%|<total2>%|<total3>%|<total4>%|<total5>%|<total6>%|<total7>%|<total8>%|<total9>%"
+             , Run MultiCpu [ "--template" , "Cpu: Cr1 <total0>%|Cr2 <total1>%|Cr3 <total2>%|Cr4 <total3>%|Cr5 <total4>%|Cr6 <total5>%|Cr7 <total6>%|Cr8 <total7>%|Cr9 <total8>%|Cr10 <total9>%|Cr11 <total10>%|Cr12 <total11>%|Cr13 <total12>%|Cr14 <total13>%|Cr15 <total14>%|Cr16 <total15>%"
              , "--Low"                     , "50"           -- units: %
              , "--High"                    , "85"           -- units: %
              , "--low"                       , "darkgreen"
              , "--normal"                  , "darkorange"
              , "--high"                    , "darkred"
              ] 10
-             , Run Com "/home/dre/.xmonad/conkyscript" ["&"
-             --"--template"
-             --, "--Low"                     , "35"
-             --, "--low"                     , "darkgreen"
-             ] "conky" 30
+             --, Run Com "~/.xmonad/conkyscript" ["&"] "conky" 30
              --, Run Com "conky" ["-q", "-i", "1"] "conky" 30
              --, Run CoreTemp [ "-t"     , "Temp:\<core0\>°C"
              --, Run CoreTemp [ "--template"     , "Temp: <core0>°C"
@@ -42,5 +38,5 @@ font = "xft:CaskaydiaCove Nerd Font:size=16:antialias=true"
              ]
 , sepChar = "%"
 , alignSep = "}{"
-, template = "%conky% | %memory%  %swap% %wlp41s0% - %enp39s0% }{ %music% | <fc=#49E20E>%date%</fc> | %KRYY%"
+, template = "%multicpu%}{ %music%"
 }

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+conky -c ~/.conkyrc i1 -q > conkystat &
+sleep 4
+killall -q conky
+cat conkystat
+rm conkystat
