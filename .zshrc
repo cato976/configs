@@ -444,6 +444,8 @@ export NVM_DIR="$HOME/.nvm"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-synapse &>/dev/null &
+if [[ -f /bin/synapse ]]; then
+    synapse &>/dev/null &
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
