@@ -449,3 +449,5 @@ if [[ -f /bin/synapse ]]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval $(ssh-agent)
