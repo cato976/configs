@@ -14,6 +14,32 @@ import XMonad.Util.CustomKeys
 -- Multimedia Audio
 import Graphics.X11.ExtraTypes.XF86
 
+--Layout
+import XMonad.Layout.NoBorders
+import XMonad.Layout.Spacing
+import XMonad.Layout.ResizableTile
+import XMonad.Layout.GridVariants
+import XMonad.Layout.ThreeColumns
+import XMonad.Layout.ZoomRow
+import XMonad.Layout.SimplestFloat
+import XMonad.Layout.OneBig
+
+-- Layout modifiers
+import qualified XMonad.Layout.ToggleLayouts as T
+import XMonad.Layout.WindowArranger
+import XMonad.Layout.MultiToggle
+import XMonad.Layout.MultiToggle.Instances
+import XMonad.Layout.LimitWindows
+import XMonad.Layout.Renamed
+import XMonad.Layout.Reflect
+ 
+-- Actions
+import XMonad.Actions.Minimize
+import XMonad.Actions.WindowBringer
+import XMonad.Actions.WindowGo
+import XMonad.Actions.WorkspaceNames
+import XMonad.Actions.MouseResize
+
 -- Data
 import Data.List
 import Control.Monad.Trans.Maybe
@@ -29,24 +55,23 @@ import qualified Data.ByteString.Lazy as B
 import qualified Data.Map as M
 import System.Directory
 import System.FilePath.Posix
-import XMonad.Actions.Minimize
-import XMonad.Actions.WindowBringer
-import XMonad.Actions.WindowGo
-import XMonad.Actions.WorkspaceNames
 import qualified XMonad.Util.ExtensibleState as XS
 import XMonad.Util.Minimize
 
 
-------------------------------------------------------------------------
+--------------------------------------------------------------------------
 -----VARIABLES
 --------------------------------------------------------------------------
+windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
+
 
 -- Selectors
 spotifySelector = className =? "Spotify"
 
 main = do
-    xmproc <- spawnPipe "/usr/bin/xmobar -x 0 /home/dre/.config/xmobar/.xmobarrc"
-    xmproc <- spawnPipe "/usr/bin/xmobar -x 1 /home/dre/.config/xmobar/.xmobarrc"
+    xmproc <- spawnPipe "/home/dre/.xmonad/conkyscript"
+    xmproc0 <- spawnPipe "/usr/bin/xmobar -x 0 /home/dre/.config/xmobar/.xmobarrc"
+    xmproc1 <- spawnPipe "/usr/bin/xmobar -x 1 /home/dre/.config/xmobar/.xmobarrc1"
     xmonad $ defaultConfig
         { terminal          = myTerminal
         , modMask           = myModMask
@@ -55,10 +80,23 @@ main = do
         , focusedBorderColor= myFocusBorderColor
         , handleEventHook   = handleEventHook defaultConfig <+> docksEventHook
         , manageHook        = myManageHook <+> manageHook defaultConfig <+> manageDocks
-        , layoutHook        = avoidStruts $ layoutHook defaultConfig
+        , layoutHook        = myLayoutHook -- <+> avoidStruts $ layoutHook defaultConfig
         , startupHook       = myStartupHook
         , workspaces        = myWorkspaces
         , keys              = customKeys (const []) addKeys
+        , logHook = dynamicLogWithPP xmobarPP
+                        { ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x
+                        , ppCurrent = xmobarColor "#c3e88d" "" . wrap "[" "]" -- Current workspace in xmobar
+                        , ppVisible = xmobarColor "#c3e88d" ""                -- Visible but not current workspace
+                        , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" ""   -- Hidden workspaces in xmobar
+                        , ppHiddenNoWindows = xmobarColor "#F07178" ""        -- Hidden workspaces (no windows)
+                        , ppTitle = xmobarColor "#d0d0d0" "" . shorten 60     -- Title of active window in xmobar
+                        , ppSep =  "<fc=#666666> | </fc>"                     -- Separators in xmobar
+                        , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"  -- Urgent workspace
+                        , ppExtras  = [windowCount]                           -- # of windows current workspace
+                        , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
+                        }
+
         } `additionalKeys` myKeys
 
 myTerminal              = "st"
@@ -87,6 +125,28 @@ myWorkspaces            = ["1:main", "2:music", "3", "4", "5", "6", "7", "8", "9
         --clickable l = [ "<action=xdotool key super+" ++ show (n) ++ ">" ++ ws ++ "</action>" |
                         --(i,ws) <- zip [1..9] l,
                         --let n = i ]
+
+
+------------------------------------------------------------------------
+-- LAYOUTS
+------------------------------------------------------------------------
+myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts floats $ 
+               mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ myDefaultLayout
+             where 
+                 myDefaultLayout = tall ||| grid ||| threeCol ||| threeRow ||| oneBig ||| noBorders monocle ||| space ||| floats
+
+tall     = renamed [Replace "tall"]     $ limitWindows 12 $ spacing 6 $ ResizableTall 1 (3/100) (1/2) []
+grid     = renamed [Replace "grid"]     $ limitWindows 12 $ spacing 6 $ mkToggle (single MIRROR) $ Grid (16/10)
+threeCol = renamed [Replace "threeCol"] $ limitWindows 3  $ ThreeCol 1 (3/100) (1/2) 
+threeRow = renamed [Replace "threeRow"] $ limitWindows 3  $ Mirror $ mkToggle (single MIRROR) zoomRow
+oneBig   = renamed [Replace "oneBig"]   $ limitWindows 6  $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (5/9) (8/12)
+monocle  = renamed [Replace "monocle"]  $ limitWindows 20 $ Full
+space    = renamed [Replace "space"]    $ limitWindows 4  $ spacing 12 $ Mirror $ mkToggle (single MIRROR) $ mkToggle (single REFLECTX) $ mkToggle (single REFLECTY) $ OneBig (2/3) (2/3)
+floats   = renamed [Replace "floats"]   $ limitWindows 20 $ simplestFloat
+
+
+
+
 
 ------------------------------------------------------------------------
 ---- MANAGEHOOK

@@ -38,9 +38,10 @@ font = "xft:CaskaydiaCove Nerd Font:size=16:antialias=true"
              --] 50
              , Run Memory ["-t","Mem: <usedratio>%"] 10
              , Run Swap [ ] 10
-             , Run Date "%a %b %_d %l:%M" "date" 10
+             , Run Date "%a %b %_d %l:%M:%S" "date" 10
+             , Run StdinReader
              ]
 , sepChar = "%"
 , alignSep = "}{"
-, template = "%conky% | %memory%  %swap% %wlp41s0% - %enp39s0% }{ %music% | <fc=#49E20E>%date%</fc> | %KRYY%"
+, template = "%StdinReader% | %conky% | %memory%  %swap% %wlp41s0% - %enp39s0% }{ %music% | <fc=#49E20E>%date%</fc> | %KRYY%"
 }
