@@ -12,7 +12,6 @@ font = "xft:CaskaydiaCove Nerd Font:size=16:antialias=true"
              , Run Network "eth1" ["-L","0","-H","32","--normal","green","--high","red"] 10
              , Run Network "wlp41s0" ["-L","0","-H","32","--normal","green","--high","red"] 10
              , Run Network "enp39s0" ["-L","0","-H","32","--normal","green","--high","red"] 10
-             , Run Com "/bin/sh" ["-c", "~/bin/spotify.sh"] "music" 1000
              , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
              , Run MultiCpu [ "--template" , "Cpu: <total0>%|<total1>%|<total2>%|<total3>%|<total4>%|<total5>%|<total6>%|<total7>%|<total8>%|<total9>%"
              , "--Low"                     , "50"           -- units: %
@@ -22,20 +21,15 @@ font = "xft:CaskaydiaCove Nerd Font:size=16:antialias=true"
              , "--high"                    , "darkred"
              ] 10
              , Run Com "/home/dre/.xmonad/conkyscript" ["&"
-             --"--template"
-             --, "--Low"                     , "35"
-             --, "--low"                     , "darkgreen"
              ] "conky" 30
-             --, Run Com "conky" ["-q", "-i", "1"] "conky" 30
-             --, Run CoreTemp [ "-t"     , "Temp:\<core0\>°C"
-             --, Run CoreTemp [ "--template"     , "Temp: <core0>°C"
-             --|<core1>°C|<core2>°C|<core3>°C|<core4>°C|<core5>°C|<core6>°C|<core7>°C|<core8>°C|<core9>°C"
-             --, "--Low"          , "70"          -- units: °C
-             --, "--High"         , "80"          -- units: °C
-             --, "--low"          , "darkgreen"
-             --, "--normal"       , "darkorange"
-             --, "--high"          , "darkred"
-             --] 50
+             , Run ThermalZone 0 ["--template" , "Network: <temp>°C"
+             , "--Low"                    , "40"
+             , "--low"                    , "darkgreen"
+             , "--High"                   , "45"
+             , "--high"                   , "darkred"
+             , "--normal"                 , "darkorange"
+             ] 30
+             , Run Mpris2 "spotify" ["-t", "<artist> - <title>"] 10
              , Run Memory ["-t","Mem: <usedratio>%"] 10
              , Run Swap [ ] 10
              , Run Date "%a %b %_d %l:%M:%S" "date" 10
@@ -43,5 +37,5 @@ font = "xft:CaskaydiaCove Nerd Font:size=16:antialias=true"
              ]
 , sepChar = "%"
 , alignSep = "}{"
-, template = "%StdinReader% | %conky% | %memory%  %swap% %wlp41s0% - %enp39s0% }{ %music% | <fc=#49E20E>%date%</fc> | %KRYY%"
+, template = "%StdinReader% | %conky% %thermal0% | %memory%  %swap% %wlp41s0% - %enp39s0% }{ %mpris2% | <fc=#49E20E>%date%</fc> | %KRYY%"
 }

@@ -70,8 +70,8 @@ spotifySelector = className =? "Spotify"
 
 main = do
     xmproc <- spawnPipe "/home/dre/.xmonad/conkyscript"
-    xmproc0 <- spawnPipe "/usr/bin/xmobar -x 0 /home/dre/.config/xmobar/.xmobarrc"
-    xmproc1 <- spawnPipe "/usr/bin/xmobar -x 1 /home/dre/.config/xmobar/.xmobarrc1"
+    xmproc0 <- spawnPipe "/home/dre/.cabal/bin/xmobar -x 0 /home/dre/.config/xmobar/.xmobarrc"
+    xmproc1 <- spawnPipe "/home/dre/.cabal/bin/xmobar -x 1 /home/dre/.config/xmobar/.xmobarrc1"
     xmonad $ defaultConfig
         { terminal          = myTerminal
         , modMask           = myModMask
