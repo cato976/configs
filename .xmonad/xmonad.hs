@@ -310,6 +310,7 @@ myKeys =
         ,((0                    , xF86XK_AudioPrev), spawn "~/bin/liskin-media prev")
         ,((0                    , xF86XK_AudioNext), spawn "~/bin/liskin-media next")
         ,((myModMask           , xK_e), spawn "~/.local/bin/dmenuunicode")
+        ,((myModMask           , xK_g), spawn "/bin/google-chrome-stable")
     ]
 
 addKeys conf@XConfig {modMask = modm} =
