@@ -1,6 +1,6 @@
 Config {
 --font = "xft:Bitstream Vera Sans Mono:size=16:antialias=true:hinting=true"
-font = "xft:CaskaydiaCove Nerd Font:size=16:antialias=true"
+font = "xft:CaskaydiaCove Nerd Font:size=12:antialias=true"
 --font = "-*-Fixed-Bold-R-Normal-*-15-*-*-*-*-*-*-*:size=16"
 , bgColor = "black"
 , fgColor = "grey"
@@ -34,9 +34,9 @@ font = "xft:CaskaydiaCove Nerd Font:size=16:antialias=true"
              --] 50
              , Run Memory ["-t","Mem: <usedratio>%"] 10
              , Run Swap [ ] 10
-             , Run Date "%a %b %_d %l:%M" "date" 10
+             , Run Date "%a %b %_d %l:%M:%S" "date" 10
              ]
 , sepChar = "%"
 , alignSep = "}{"
-, template = "%multicpu%}{ %music%"
+, template = "%multicpu%}{ %music% | %date%" 
 }

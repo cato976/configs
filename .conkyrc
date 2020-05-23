@@ -43,7 +43,7 @@ conky.config = {
 };
 
 conky.text = 
-[[Temp 1 ${hwmon 0 temp 1}°C Temp 2 ${hwmon 1 temp 2}°C Temp 3 ${hwmon 2 temp 3}°C Temp 4 ${hwmon 3 temp 4}°C Temp 5 ${hwmon 4 temp 5}°C
+[[Temp 1 ${hwmon 0 temp 1}°C Temp 2 ${hwmon 1 temp 2}°C
 Core2 ${cpu cpu2}% ${cpubar cpu2}
 File systems:
  / ${fs_used /}/${fs_size /} ${fs_bar 6 /}
