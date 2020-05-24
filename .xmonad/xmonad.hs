@@ -2,6 +2,7 @@
 import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageHelpers --(isFullscreen, doFullFloat)
+import XMonad.Hooks.DynamicProperty
 import XMonad.Util.Run (spawnPipe)
 import XMonad.Util.SpawnOnce
 import XMonad.Util.EZConfig 
@@ -78,7 +79,7 @@ main = do
         , borderWidth       = myBorderWidth
         , normalBorderColor = myNormalBorderColor
         , focusedBorderColor= myFocusBorderColor
-        , handleEventHook   = handleEventHook defaultConfig <+> docksEventHook
+        , handleEventHook   = myHandleEventHook
         , manageHook        = myManageHook <+> manageHook defaultConfig <+> manageDocks
         , layoutHook        = myLayoutHook -- <+> avoidStruts $ layoutHook defaultConfig
         , startupHook       = myStartupHook
@@ -164,6 +165,18 @@ myManageHook = composeAll  . concat $
         ,[className =? "Gimp" --> doFloat]
         ,[className =? "arandr" --> doFloat]
     ]
+
+--------------------------------------------------------------------------
+---- EventHook
+--------------------------------------------------------------------------
+myHandleEventHook = docksEventHook
+                <+> dynamicTitle myDynHook
+                <+> handleEventHook def
+    where
+        myDynHook = composeAll
+            [
+                (className =? "" --> doShift "2:music") -- This is most likely spotify 
+            ]
 
 ------------------------------------------------------------------------
 -- Startup hook
