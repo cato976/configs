@@ -105,7 +105,7 @@ myTextEditor            = "nvim"
 myModMask               = mod4Mask -- Win key or Super_R
 myBorderWidth           = 3
 myNormalBorderColor     = "#292d3e"
-myFocusBorderColor      = "bbc5ff"
+myFocusBorderColor      = "#bbc5ff"
 
 ------------------------------------------------------------------------
 ---WORKSPACES
@@ -118,7 +118,7 @@ myFocusBorderColor      = "bbc5ff"
         --doubleLts '<' = "<<"
         --doubleLts x   = [x]
 
-myWorkspaces            = ["1:main", "2:music", "3", "4", "5", "6", "7", "8", "9"]
+myWorkspaces            = ["1:main", "2:music", "3:tv", "4:work", "5", "6", "7", "8", "9"]
 --myWorkspaces :: [String]
 --myWorkspaces            = clickable . (map xmobarEscape)
                             -- $ ["1:main", "2:music", "3", "4", "5", "6", "7", "8", "9"]
