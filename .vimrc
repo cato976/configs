@@ -57,6 +57,7 @@ Plugin 'junegunn/fzf', { 'do': { -> fzf#install()}}
 Plugin 'junegunn/fzf.vim'
 Plugin 'airblade/vim-rooter' " Allow fzf to search from the root of the git repo
 Plugin 'haya14busa/is.vim' " unhighlight search results
+Plugin 'prettier/vim-prettier' " prittier
 call vundle#end()
 " }}}
 
