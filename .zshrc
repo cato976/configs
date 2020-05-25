@@ -210,7 +210,7 @@ commands() {
 export BROWSER='/usr/bin/google-chrome-stable'
 
 # Set git text editor
-export GIT_EDITOR="vim"
+export GIT_EDITOR="nvim"
 
 
 export NVM_DIR="$HOME/.nvm"
@@ -437,10 +437,6 @@ export BROWSER='/usr/bin/google-chrome-stable'
 #export CHROME_BIN='/mnt/c/Tools/Chrome/Application/chrome.exe'
 export CHROME_BIN='/usr/bin/google-chrome-stable'
 
-# Set git text editor
-export GIT_EDITOR="vim"
-
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -448,6 +444,11 @@ export NVM_DIR="$HOME/.nvm"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-synapse &>/dev/null &
+if [[ -f /bin/synapse ]]; then
+    synapse &>/dev/null &
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval $(ssh-agent)
+[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"

@@ -11,6 +11,8 @@ Plugin 'Lokaltog/vim-powerline'
 Plugin 'powerline/powerline-fonts'
 Plugin 'sjl/badwolf'
 Plugin 'rakr/vim-one'
+Plugin 'morhetz/gruvbox'
+Plugin 'dracula/vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'vim-syntastic/syntastic'
@@ -57,6 +59,7 @@ Plugin 'junegunn/fzf', { 'do': { -> fzf#install()}}
 Plugin 'junegunn/fzf.vim'
 Plugin 'airblade/vim-rooter' " Allow fzf to search from the root of the git repo
 Plugin 'haya14busa/is.vim' " unhighlight search results
+Plugin 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] } " pop-up key bindings
 Plugin 'prettier/vim-prettier' " prittier
 call vundle#end()
 " }}}
@@ -95,10 +98,13 @@ syntax on
 
 let g:deoplete#enable_at_startup = 1
 filetype plugin indent on
-set background=dark
-colorscheme one
+"set background=dark
+colorscheme gruvbox
 
-highlight Pmenu ctermbg=gray guibg=gray
+
+"color white
+highlight Pmenu ctermbg=gray guibg=gray 
+
 
 
 " }}}
@@ -623,4 +629,13 @@ xnoremap <leader>rc :s///gc<left><left><left>
 " for replacing a few instances of the term (comparable to multiple cursors).
 nnoremap <silent> s* :let @/='\<'.expand('<cword>').'\>'<cr>cgn
 xnoremap <silent> s* "sy:let @/=@s<cr>cgn
+" }}}
+
+" which-key --------------------------------------------------------------------------{{{
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+" }}}
+
+" git --------------------------------------------------------------------------------{{{
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gs :Gstatus<CR>
 " }}}

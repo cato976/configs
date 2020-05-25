@@ -1,0 +1,42 @@
+Config {
+--font = "xft:Bitstream Vera Sans Mono:size=16:antialias=true:hinting=true"
+font = "xft:CaskaydiaCove Nerd Font:size=12:antialias=true"
+--font = "-*-Fixed-Bold-R-Normal-*-15-*-*-*-*-*-*-*:size=16"
+, bgColor = "black"
+, fgColor = "grey"
+, position = Top
+, lowerOnStart = True
+, commands = [
+             Run Weather "KRYY" ["-t", "<station>: <tempF>F","-L","64","-H","77","--normal","green","--high","red","--low","lightblue"] 36000
+             ,Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+             , Run Network "eth1" ["-L","0","-H","32","--normal","green","--high","red"] 10
+             , Run Network "wlp41s0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+             , Run Network "enp39s0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+             , Run Com "/bin/sh" ["-c", "~/bin/spotify.sh"] "music" 1000
+             , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
+             , Run MultiCpu [ "--template" , "Cpu: Cr1 <total0>%|Cr2 <total1>%|Cr3 <total2>%|Cr4 <total3>%|Cr5 <total4>%|Cr6 <total5>%|Cr7 <total6>%|Cr8 <total7>%|Cr9 <total8>%|Cr10 <total9>%|Cr11 <total10>%|Cr12 <total11>%|Cr13 <total12>%|Cr14 <total13>%|Cr15 <total14>%|Cr16 <total15>%"
+             , "--Low"                     , "50"           -- units: %
+             , "--High"                    , "85"           -- units: %
+             , "--low"                       , "darkgreen"
+             , "--normal"                  , "darkorange"
+             , "--high"                    , "darkred"
+             ] 10
+             --, Run Com "~/.xmonad/conkyscript" ["&"] "conky" 30
+             --, Run Com "conky" ["-q", "-i", "1"] "conky" 30
+             --, Run CoreTemp [ "-t"     , "Temp:\<core0\>°C"
+             --, Run CoreTemp [ "--template"     , "Temp: <core0>°C"
+             --|<core1>°C|<core2>°C|<core3>°C|<core4>°C|<core5>°C|<core6>°C|<core7>°C|<core8>°C|<core9>°C"
+             --, "--Low"          , "70"          -- units: °C
+             --, "--High"         , "80"          -- units: °C
+             --, "--low"          , "darkgreen"
+             --, "--normal"       , "darkorange"
+             --, "--high"          , "darkred"
+             --] 50
+             , Run Memory ["-t","Mem: <usedratio>%"] 10
+             , Run Swap [ ] 10
+             , Run Date "%a %b %_d %l:%M:%S" "date" 10
+             ]
+, sepChar = "%"
+, alignSep = "}{"
+, template = "%multicpu%}{ %music% | %date%" 
+}
