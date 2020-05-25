@@ -35,6 +35,7 @@ import XMonad.Layout.Renamed
 import XMonad.Layout.Reflect
  
 -- Actions
+import XMonad.Actions.CopyWindow
 import XMonad.Actions.Minimize
 import XMonad.Actions.WindowBringer
 import XMonad.Actions.WindowGo
@@ -58,6 +59,7 @@ import System.Directory
 import System.FilePath.Posix
 import qualified XMonad.Util.ExtensibleState as XS
 import XMonad.Util.Minimize
+import XMonad.Util.NamedActions
 
 
 --------------------------------------------------------------------------
@@ -73,7 +75,10 @@ main = do
     xmproc <- spawnPipe "/home/dre/.xmonad/conkyscript"
     xmproc0 <- spawnPipe "/home/dre/.cabal/bin/xmobar -x 0 /home/dre/.config/xmobar/.xmobarrc"
     xmproc1 <- spawnPipe "/home/dre/.cabal/bin/xmobar -x 1 /home/dre/.config/xmobar/.xmobarrc1"
-    xmonad $ defaultConfig
+    xmonad 
+        $ addDescrKeys ((myModMask, xK_F1), xMessage) myKeys
+        $ defaultConfig
+        
         { terminal          = myTerminal
         , modMask           = myModMask
         , borderWidth       = myBorderWidth
@@ -84,7 +89,6 @@ main = do
         , layoutHook        = myLayoutHook -- <+> avoidStruts $ layoutHook defaultConfig
         , startupHook       = myStartupHook
         , workspaces        = myWorkspaces
-        , keys              = customKeys (const []) addKeys
         , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x
                         , ppCurrent = xmobarColor "#c3e88d" "" . wrap "[" "]" -- Current workspace in xmobar
@@ -98,7 +102,7 @@ main = do
                         , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
                         }
 
-        } `additionalKeys` myKeys
+        }
 
 myTerminal              = "st"
 myTextEditor            = "nvim"
@@ -311,35 +315,53 @@ bindBringAndRaise mask sym start query =
     , ((mask .|. controlMask, sym), myBringNextMaybe start query)]
 bindBringAndRaiseMany :: [(KeyMask, KeySym, X (), Query Bool)] -> [((KeyMask, KeySym), X())]
 bindBringAndRaiseMany = concatMap (\(a, b, c, d) -> bindBringAndRaise a b c d)
+
+------------------------------------------------------------------------}}}
+-- Bindings                                                             {{{
+---------------------------------------------------------------------------
+showKeybindings :: [((KeyMask, KeySym), NamedAction)] -> NamedAction
+showKeybindings x = addName "Show Keybindings" $ io $ do
+    h <- spawnPipe "zenity" -- text-info --font=terminus"
+    hPutStr h (unlines $ showKm x)
+    hClose h
+    return ()
+
+
+myKeys conf = let
+    subKeys str ks = subtitle str : mkNamedKeymap conf ks
+    in
 ------------------------------------------------------------------------
 -- Multimedia keys
-shiftThenView i = W.greedyView i . W.shift i
-myKeys =
+------------------------------------------------------------------------
+    subKeys "Multimedia"
     [
-        ((0                    , xF86XK_AudioLowerVolume), spawn "~/bin/liskin-media volume down") -- volume down
-        ,((0                    , xF86XK_AudioMute), spawn "~/bin/liskin-media mute")
-        ,((0                    , xF86XK_AudioRaiseVolume), spawn "~/bin/liskin-media volume up") -- volume up
-        ,((0                    , xF86XK_AudioPlay), spawn "~/bin/liskin-media play")
-        ,((0                    , xF86XK_AudioPrev), spawn "~/bin/liskin-media prev")
-        ,((0                    , xF86XK_AudioNext), spawn "~/bin/liskin-media next")
-        ,((myModMask           , xK_e), spawn "~/.local/bin/dmenuunicode")
-        ,((myModMask           , xK_g), spawn "/bin/google-chrome-stable")
+        ("<XF86AudioLowerVolume>", addName "Lower Volume" $ spawn "~/bin/liskin-media volume down") -- volume down
+        ,("<XF86AudioMute>", addName "Mute Volume" $ spawn "~/bin/liskin-media mute")
+        ,("<XF86AudioRaiseVolume>", addName "Raise Volume" $ spawn "~/bin/liskin-media volume up") -- volume up
+        ,("<XF86AudioPlay>", addName "Play" $ spawn "~/bin/liskin-media play")
+        ,("<XF86AudioPrev>", addName "Previons Track" $ spawn "~/bin/liskin-media prev")
+        ,("<XF86AudioNext>", addName "Next Track" $ spawn "~/bin/liskin-media next")
+    ] ^++^
+--------------------------------------------------------------------------
+-- Spawn Apps
+--------------------------------------------------------------------------
+    subKeys "Spawn Apps"
+    [
+        ("M-g", addName "Spawn google" $ spawn "/bin/google-chrome-stable")
+        ,("M-s", addName "Spawn spotify" $ spawn "/bin/spotify")
+        ,("M-M1-s", addName "Spawn spotify" $ spawn "/bin/spotify")
+        ,("M-f", addName "Select emoji" $ spawn "~/.local/bin/dmenuunicode")
+    ] ^++^
+--------------------------------------------------------------------------
+-- Windows
+--------------------------------------------------------------------------
+    subKeys "Windows"
+    [
+        ("M-d"                , addName "Duplicate w to all ws"       $ toggleCopyToAll)
     ]
+        where
+            toggleCopyToAll = wsContainingCopies >>= \ws -> case ws of
+                                                   [] -> windows copyToAll
+                                                   _ -> killAllOtherCopies
 
-addKeys conf@XConfig {modMask = modm} =
-
-    [] ++ bindBringAndRaiseMany
-    [
-        (modalt, xK_s, spawn "spotify", spotifySelector)
-        --,((0                    , XF86AudioRaiseVolume), spawn "~/bin/liskin-media volume up") -- volume up
-    ] ++
-    -- Replace original moving stuff around + greedy view bindings
-    [((additionalMask .|. modm, key), windows $ function workspace)
-         | (workspace, key) <- zip (workspaces conf) [xK_1 .. xK_9]
-         , (function, additionalMask) <-
-             [ (W.greedyView, 0)
-             , (W.shift, shiftMask)
-             , (shiftThenView, controlMask)]]
-    where
-      modalt = modm .|. mod1Mask
-
+shiftThenView i = W.greedyView i . W.shift i
