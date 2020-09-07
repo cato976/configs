@@ -61,6 +61,7 @@ Plugin 'airblade/vim-rooter' " Allow fzf to search from the root of the git repo
 Plugin 'haya14busa/is.vim' " unhighlight search results
 Plugin 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] } " pop-up key bindings
 Plugin 'prettier/vim-prettier' " prittier
+Plugin 'mbbill/undotree'
 call vundle#end()
 " }}}
 
