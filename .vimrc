@@ -639,3 +639,13 @@ nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gs :Gstatus<CR>
 " }}}
+
+" markdown preview ------------------------------------------------------------{{{
+
+function! TerminalPreviewMarkdown()
+    new % | terminal mdv  % 
+endfunction
+
+map <silent> <leader>m :call TerminalPreviewMarkdown()<CR>
+
+" }}}
