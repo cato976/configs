@@ -43,7 +43,8 @@ Plugin 'neomake/neomake'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'machakann/vim-highlightedyank'
-Plugin 'OrangeT/vim-csharp'
+"Plugin 'OrangeT/vim-csharp'
+Plugin 'cato976/vim-csharp'
 Plugin 'LucHermitte/lh-vim-lib'
 Plugin 'LucHermitte/VimFold4C'
 Plugin 'craigemery/vim-autotag'
@@ -311,7 +312,7 @@ let g:OmniSharp_server_type = 'roslyn'
 let g:OmniSharp_host = "http://localhost:2000"
 let g:syntastic_cs_checkers = ['code_checker']
 
-"let g:OmniSharp_server_path = 'D:\Users\Dre\.omnisharp/OmniSharp.exe'
+let g:OmniSharp_server_path = 'C:\Users\Dre\.omnisharp/OmniSharp.exe'
 "let g:OmniSharp_server_path = 'C:\WS\Personal_Git\omnisharp-roslyn\bin\Debug\OmniSharp.Http.Driver\net461\OmniSharp.exe'
 let g:OmniSharp_port = 2000
 
