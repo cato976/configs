@@ -325,7 +325,7 @@ let g:OmniSharp_timeout = 10
 " Don't autoselect first omnicomplete option, show options even if there is only
 " one (so the preview documentation is accessible). Remove 'preview' if you
 " don't want to see any documentation whatsoever.
-set completeopt=longest,menuone,preview
+set completeopt=longest,menuone,preview,noselect
 
 " Fetch full documentation during omnicomplete requests.
 " There is a performance penalty with this (especially on Mono).
