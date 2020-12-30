@@ -22,7 +22,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'MarcWeber/vim-addon-manager'
 Plugin 'prabirshrestha/asyncomplete.vim'
 Plugin 'prabirshrestha/async.vim'
-Plugin 'w0rp/ale'
+"Plugin 'w0rp/ale'
 Plugin 'cato976/vim-test'
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'cato976/omnisharp-vim'
@@ -63,6 +63,7 @@ Plugin 'haya14busa/is.vim' " unhighlight search results
 Plugin 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] } " pop-up key bindings
 Plugin 'prettier/vim-prettier' " prittier
 Plugin 'mbbill/undotree'
+Plugin 'puremourning/vimspector' " Debugging in vim
 call vundle#end()
 " }}}
 
@@ -244,7 +245,8 @@ if has("nvim")
         \ 'coc-pairs',
         \ 'coc-snippets'
         \ ]
-    set guifont=CascadiaCode\ Nerd\ Font
+    "set guifont=CascadiaCode\ Nerd\ Font
+    set guifont=CaskaydiaCove\ Nerd\ Font
 endif
 " }}}
 
@@ -594,8 +596,8 @@ function! FloatingFZF()
   let buf = nvim_create_buf(v:false, v:true)
   call setbufvar(buf, '&signcolumn', 'no')
  
-  let height = float2nr(10)
-  let width = float2nr(180)
+  let height = float2nr(50)
+  let width = float2nr(280)
   let horizontal = float2nr((&columns - width) / 2)
   let vertical = 1
  
@@ -650,4 +652,11 @@ endfunction
 
 map <silent> <leader>m :call TerminalPreviewMarkdown()<CR>
 
+" }}}
+
+" vimspector ----------------------------------------------------------------{{{
+"let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+"nnoremap <silent> <F11> :call vimspector#StepInto()<CR>
+"packadd! vimspector
 " }}}
