@@ -34,6 +34,9 @@ Plugin 'msgpack/msgpack'
 if has('nvim')
     "Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plugin 'neoclide/coc.nvim', { 'do': 'yarn intstall --frozen-lockfile'}
+    Plugin 'neovim/nvim-lspconfig'
+    Plugin 'nvim-lua/completion-nvim'
+    Plugin 'nvim-lua/diagnostic-nvim'
 else
     Plugin 'Shougo/deoplete.nvim'
     Plugin 'roxma/nvim-yarp'
@@ -64,6 +67,7 @@ Plugin 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] } " pop-up 
 Plugin 'prettier/vim-prettier' " prittier
 Plugin 'mbbill/undotree'
 Plugin 'puremourning/vimspector' " Debugging in vim
+Plugin 'szw/vim-maximizer'
 call vundle#end()
 " }}}
 
@@ -101,8 +105,17 @@ syntax on
 
 let g:deoplete#enable_at_startup = 1
 filetype plugin indent on
-"set background=dark
+
+let g:gruvbox_contrast_dark = 'hard'
+
+if exists('+termguicolors')
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+let g:gruvbox_invert_selection='0'
+
 colorscheme gruvbox
+set background=dark
 
 
 "color white
@@ -250,6 +263,13 @@ if has("nvim")
 endif
 " }}}
 
+" Neovim Language Server Protocol ---------------------------------------------{{{ Neovim Language Server Protocol
+if has("nvim")
+    let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+    lua require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
+endif
+" }}}
+
 " Highlighed Yank Plugin ----------------------------------------------------------------------{{{
 if has("vim")
     if !exist('##TextYankPost')
@@ -298,7 +318,7 @@ nnoremap <leader>ve :Vexplore<cr>
 
 " OmniSharp----------------------------------------------------------------------{{{ 
 " OmniSharp bindings
-"nnoremap <leader>rt :OmniSharpRunTests<cr>
+nnoremap <leader>rt :OmniSharpRunTests<cr>
 nnoremap <leader>rt :TestNearest<cr>
 nnoremap <leader>rf :OmniSharpRunTestFixture<cr>
 nnoremap <leader>ra :OmniSharpRunAllTest<cr>
@@ -327,7 +347,7 @@ let g:OmniSharp_timeout = 10
 " Don't autoselect first omnicomplete option, show options even if there is only
 " one (so the preview documentation is accessible). Remove 'preview' if you
 " don't want to see any documentation whatsoever.
-set completeopt=longest,menuone,preview,noselect
+set completeopt=longest,menuone,preview,noinsert
 
 " Fetch full documentation during omnicomplete requests.
 " There is a performance penalty with this (especially on Mono).
@@ -477,6 +497,7 @@ let g:autotagTagsFile="tags"
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+set runtimepath+=~\AppData\Local\nvim\
 " }}}
 
 " coc-snippets --------------------------------------------------------------------------{{{
@@ -655,8 +676,23 @@ map <silent> <leader>m :call TerminalPreviewMarkdown()<CR>
 " }}}
 
 " vimspector ----------------------------------------------------------------{{{
+
+function! GotoWindow(id)
+    call win_gotoid(a:id)
+    MaximizerToggle
+endfunction
+
+function! s:add_watch()
+    execute 'VimspectorWatch ' .expand('<cword>')
+endfunction
+
 "let g:vimspector_enable_mappings = 'HUMAN'
 let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+nnoremap <leader>m :MaximizerToggle!<CR>
+nnoremap <leader>dd :call vimspector#Launch()<CR>
+nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+nnoremap <leader>de :call vimspector#Reset()<CR>
+nnoremap <leader>aw :call <SID>add_watch()<CR>
 "nnoremap <silent> <F11> :call vimspector#StepInto()<CR>
 "packadd! vimspector
 " }}}
