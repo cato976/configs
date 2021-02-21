@@ -100,11 +100,13 @@ set relativenumber
 set scrolloff=999 " keep cursor in middle of screen
 set spell
 set spelllang=en_us
+"set termguicolors
 set colorcolumn=80
 syntax on
 
 let g:deoplete#enable_at_startup = 1
 filetype plugin indent on
+set background=dark
 
 let g:gruvbox_contrast_dark = 'hard'
 
@@ -473,6 +475,9 @@ if has("autocmd")
         autocmd BufNewFile *.cs call AddToProjectFile(expand('%:p'), expand('%'))
     augroup END
 endif
+
+inoremap { {<CR>}<ESC>ko
+inoremap <div> <div><CR></div><ESC>ko
 " }}}
 
 " Spotify ----------------------------------------------------------------------{{{
@@ -497,6 +502,7 @@ let g:autotagTagsFile="tags"
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"let g:UltiSnipsSnippetDirectories=["UltiSnips","snippets"]
 set runtimepath+=~\AppData\Local\nvim\
 " }}}
 
@@ -658,6 +664,7 @@ xnoremap <silent> s* "sy:let @/=@s<cr>cgn
 
 " which-key --------------------------------------------------------------------------{{{
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+source $HOME/.config/nvim/keys/which-key.vim
 " }}}
 
 " git --------------------------------------------------------------------------------{{{
@@ -696,3 +703,6 @@ nnoremap <leader>aw :call <SID>add_watch()<CR>
 "nnoremap <silent> <F11> :call vimspector#StepInto()<CR>
 "packadd! vimspector
 " }}}
+
+" run at command line
+" vnoremap aa c<C-R>=system("date -d '" . @" . "' +%s <bar> perl -pe chomp", @")<CR><ESC>
