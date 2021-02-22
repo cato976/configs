@@ -64,6 +64,7 @@ Plugin 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] } " pop-up 
 Plugin 'prettier/vim-prettier' " prittier
 Plugin 'mbbill/undotree'
 Plugin 'puremourning/vimspector' " Debugging in vim
+Plugin 'vimwiki/vimwiki'
 call vundle#end()
 " }}}
 
@@ -314,7 +315,7 @@ let g:OmniSharp_server_type = 'roslyn'
 let g:OmniSharp_host = "http://localhost:2000"
 let g:syntastic_cs_checkers = ['code_checker']
 
-let g:OmniSharp_server_path = 'C:\Users\Dre\.omnisharp/OmniSharp.exe'
+let g:OmniSharp_server_path = 'C:\Users\catoan\.omnisharp\OmniSharp.exe'
 "let g:OmniSharp_server_path = 'C:\WS\Personal_Git\omnisharp-roslyn\bin\Debug\OmniSharp.Http.Driver\net461\OmniSharp.exe'
 let g:OmniSharp_port = 2000
 
