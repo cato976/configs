@@ -30,7 +30,8 @@ let g:which_key_map.s = {
             \ }
 
 let g:which_key_map.w = {
-            \ 'name' : '+vimwiki'
+            \ 'name' : '+vimwiki',
+            \ '<Space>' : ['<Space> w <Space>', '+diary']
             \ }
 
 " Register which key map
