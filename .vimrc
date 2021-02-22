@@ -68,6 +68,7 @@ Plugin 'prettier/vim-prettier' " prittier
 Plugin 'mbbill/undotree'
 Plugin 'puremourning/vimspector' " Debugging in vim
 Plugin 'szw/vim-maximizer'
+Plugin 'vimwiki/vimwiki'
 call vundle#end()
 " }}}
 
