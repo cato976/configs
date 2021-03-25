@@ -263,6 +263,17 @@ if has("nvim")
         \ ]
     "set guifont=CascadiaCode\ Nerd\ Font
     set guifont=CaskaydiaCove\ Nerd\ Font
+
+    let s:fontsize = 16
+    function! AdjustFontSize(amount)
+          let s:fontsize = s:fontsize+a:amount
+          :execute "GuiFont! Consolas:h" . s:fontsize
+    endfunction
+
+    noremap <C-Up> :call AdjustFontSize(1)<CR>
+    noremap <C-Down> :call AdjustFontSize(-1)<CR>
+    inoremap <C-Up> <Esc>:call AdjustFontSize(1)<CR>a
+    inoremap <C-Down> <Esc>:call AdjustFontSize(-1)<CR>a
 endif
 " }}}
 
