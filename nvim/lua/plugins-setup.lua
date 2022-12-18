@@ -135,6 +135,7 @@ return packer.startup(function(use)
     },
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
     })
+    use("nvim-treesitter/nvim-treesitter", { run = { ":TSUpdate"}})
 
     if packer_bootstrap then
         require("packer").sync()
