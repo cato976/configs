@@ -14,14 +14,6 @@ keymap.set("n", "<C-f>", ":Rg") -- fuzy find
 -- nvim-tree
 keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
 
--- OmniSharp bindings
-keymap.set("n", "<leader>rt", ":OmniSharpRunTests<CR>")
-keymap.set("n", "<leader>rt", ":TestNearest<CR>")
-keymap.set("n", "<leader>rf", ":OmniSharpRunTestFixture<CR>")
-keymap.set("n", "<leader>ra", ":OmniSharpRunAllTest<CR>")
-keymap.set("n", "<leader>rl", ":OmniSharpRunLastTest<CR>")
-keymap.set("n", "<leader>b",  ":OmniSharpBuildAsync<CR>")
-keymap.set("n", "<leader><Space>", ":OmniSharpGetCodeActions<CR>")
 --nnoremap <leader>b :Neomake<cr>
 
 -- fzf
