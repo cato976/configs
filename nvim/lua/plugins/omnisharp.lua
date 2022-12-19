@@ -5,5 +5,5 @@
 --end
 
 vim.cmd([[
-    let g:OmniSharp_server_path = "C:/Users/catoan/.omnisharp/OmniSharp.exe"
+    let g:OmniSharp_server_path = "~/.omnisharp/OmniSharp.exe"
 ]])

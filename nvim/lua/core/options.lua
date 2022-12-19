@@ -20,7 +20,7 @@ opt.cursorline = true
 opt.background = "dark"
 
 vim.cmd([[
-    let g:python3_host_prog = "C:/Users/catoan/AppData/Local/Programs/Python/Python311/python.exe"
+    let g:python3_host_prog = "~/AppData/Local/Programs/Python/Python311/python.exe"
 ]])
 
 -- Basics  ----------------------------------------------------------------------{{{
