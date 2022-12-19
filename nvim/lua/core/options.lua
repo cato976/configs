@@ -15,15 +15,20 @@ opt.incsearch = true
 -- cursor line
 opt.cursorline = true
 
+opt.hlsearch = true
+
 -- appearance
---opt.colorcolumn = 80
+opt.colorcolumn = "80"
 opt.background = "dark"
+
+opt.spelllang = "en_us"
 
 vim.cmd([[
     syntax on
 ]])
 
-vim.g["python3_host_prog"] =  "c:/Python311/python.exe"
+vim.g["python3_host_prog"] = os.getenv("HOME") .. "/AppData/Local/Programs/Python/Python311/python.exe"
+
 
 -- Basics  ----------------------------------------------------------------------{{{
 -- vimrc folds
