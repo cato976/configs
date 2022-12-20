@@ -21,6 +21,7 @@ opt.hlsearch = true
 opt.colorcolumn = "80"
 opt.background = "dark"
 
+opt.spell = true
 opt.spelllang = "en_us"
 
 opt.guifont = {'CaskaydiaCove Nerd Font'}
