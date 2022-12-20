@@ -27,10 +27,20 @@ opt.guifont = {'CaskaydiaCove Nerd Font'}
 
 vim.g["python3_host_prog"] = os.getenv("HOME") .. "/AppData/Local/Programs/Python/Python311/python.exe"
 
+-- folding
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 --set nofoldenable                     " Disable folding at startup.
 
+-- save undo info
+if (not (vim.fn.isdirectory(vim.fn.expand("~") .. '/AppData/Local/nvim'))) then
+    vim.fn.mkdir(vim.fn.expand("~") .. '/AppData/Local/nvim', 'p', 0770)
+end
+if (vim.fn.isdirectory(vim.fn.expand("~") .. '/AppData/Local/nvim/undo-dir')) then
+    vim.fn.mkdir(vim.fn.expand("~") .. "/AppData/Local/nvim/undo-dir", 'p', 0700)
+end
+opt.undodir = vim.fn.expand("~") .. "/AppData/Local/nvim/undo-dir"
+opt.undofile = true
 
 -- Basics  ----------------------------------------------------------------------{{{
 -- vimrc folds
