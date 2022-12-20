@@ -1,4 +1,4 @@
-local saga_staus, saga = pcall(require, "lspsaga")
+local saga_status, saga = pcall(require, "lspsaga")
 if not saga_status then
     return
 end
