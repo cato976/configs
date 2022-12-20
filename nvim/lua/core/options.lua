@@ -27,6 +27,10 @@ opt.guifont = {'CaskaydiaCove Nerd Font'}
 
 vim.g["python3_host_prog"] = "C:/Python311/python.exe"
 
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+--set nofoldenable                     " Disable folding at startup.
+
 
 -- Basics  ----------------------------------------------------------------------{{{
 -- vimrc folds
