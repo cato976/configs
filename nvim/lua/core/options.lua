@@ -23,11 +23,9 @@ opt.background = "dark"
 
 opt.spelllang = "en_us"
 
-vim.cmd([[
-    syntax on
-]])
+opt.guifont = {'CaskaydiaCove Nerd Font'}
 
-vim.g["python3_host_prog"] = os.getenv("HOME") .. "/AppData/Local/Programs/Python/Python311/python.exe"
+vim.g["python3_host_prog"] = "C:/Python311/python.exe"
 
 
 -- Basics  ----------------------------------------------------------------------{{{
