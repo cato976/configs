@@ -31,7 +31,8 @@ vim.g["python3_host_prog"] = os.getenv("HOME") .. "/AppData/Local/Programs/Pytho
 -- folding
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
---set nofoldenable                     " Disable folding at startup.
+opt.foldenable = false                   -- Disable folding at startup.
+
 
 -- save undo info
 if (not (vim.fn.isdirectory(vim.fn.expand("~") .. '/AppData/Local/nvim'))) then
