@@ -9,7 +9,7 @@ keymap.set("n", "<leader>h", "<C-w>h")
 keymap.set("n", "<leader>k", "<C-w>k")
 keymap.set("n", "<leader>j", "<C-w>j")
 keymap.set("n", "<leader>q", "<C-w>q") -- nnoremap <leader>q :call <SID>QuitWindow()<CR> 
-keymap.set("n", "<C-f>", ":Rg") -- fuzy find
+keymap.set("n", "<C-f>", ":Rg ") -- fuzy find
 keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- move highligthed text down
 keymap.set("v", "K", ":m '<-2<CR>gv=gv") -- move highligthed text up
 keymap.set("n", "<leader>bb", ":buffers<CR>")
