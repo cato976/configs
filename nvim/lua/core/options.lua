@@ -43,6 +43,7 @@ if (vim.fn.isdirectory(vim.fn.expand("~") .. '/AppData/Local/nvim/undo-dir')) th
 end
 opt.undodir = vim.fn.expand("~") .. "/AppData/Local/nvim/undo-dir"
 opt.undofile = true
+opt.filetype = "on"
 
 -- Basics  ----------------------------------------------------------------------{{{
 -- vimrc folds
