@@ -4,6 +4,7 @@ local opt = vim.opt -- for conciseness
 opt.relativenumber = true
 opt.number = true
 
+
 -- tabs & indentation
 opt.tabstop = 8
 opt.shiftwidth = 4
@@ -14,6 +15,9 @@ opt.incsearch = true
 
 -- cursor line
 opt.cursorline = true
+
+-- center cursor
+opt.scrolloff = 999
 
 opt.hlsearch = true
 
