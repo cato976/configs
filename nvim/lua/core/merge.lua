@@ -31,7 +31,7 @@ function HighlightConflictMarkers()
 end
 
 -- Set option using set or setlocal , be it string or boolean value
-function _G.set_option(option, value, ...)
+function Set_option(option, value, ...)
     local isLocal = value or 0
     local isBoolean = ... or 0
     if (isBoolean ~= 0) then
@@ -65,13 +65,13 @@ function Change_option_in_diffmode(scope, option, value, ...)
     -- Entering diff mode
     if (vim.o.diff and vim.fn.exists(backupVarname)) == 0 then
         vim.fn.executable( "let " .. backupVarname .. "=&" .. value)
-        set_option(option, value, 1, isBoolean)
+        Set_option(option, value, 1, isBoolean)
     end
 
     -- Exiting diff mode
     if (not vim.o.diff and vim.fn.exists(backupVarname)) then
         local oldValue = value 
-        set_option(option, oldValue, 1, isBoolean)
+        Set_option(option, oldValue, 1, isBoolean)
         vim.fn.executable( "unlet " .. backupVarname)
     end
 end
