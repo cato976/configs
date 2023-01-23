@@ -94,7 +94,7 @@ function CheckDiffMode()
         vim.o.syntax = "off"
         vim.o.spell = "nospell"
     end
-    vim.keymap.set("n", '<leader>q',  ":lua QuitWindow()<CR>")
+    vim.api.nvim_set_keymap("n", "<leader>q", ":lua QuitWindow()<CR>", { noremap=true })
 
     local rangeTable = vim.fn.range(1, vim.fn.winnr('$'))
     for k, _win in pairs(rangeTable) do
