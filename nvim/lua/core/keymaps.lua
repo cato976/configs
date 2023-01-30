@@ -15,7 +15,7 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv") -- move highligthed text up
 keymap.set("n", "<leader>bb", ":buffers<CR>")
 
 -- nvim-tree
-keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
+vim.api.nvim_set_keymap("n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 
 --nnoremap <leader>b :Neomake<cr>
 
