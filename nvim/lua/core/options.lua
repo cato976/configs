@@ -28,7 +28,11 @@ opt.background = "dark"
 opt.spell = true
 opt.spelllang = "en_us"
 
-opt.guifont = {'CaskaydiaCove Nerd Font'}
+vim.cmd([[
+    if exists(':GuiFont') 
+        GuiFont! CaskaydiaCove Nerd Font:h8
+    endif
+]])
 
 vim.g["python3_host_prog"] = os.getenv("HOME") .. "/AppData/Local/Programs/Python/Python311/python.exe"
 
